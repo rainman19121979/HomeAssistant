@@ -1,0 +1,12 @@
+- sensor:
+      - name: Tibbermin_price
+        unique_id: Tibbermin_price
+        state_class: measurement
+        state: >
+          {{ state_attr( 'sensor.electricity_price_merianstrasse_36', 'min_price' ) | float | round(2) }}
+
+      - name: sensor.tibbermin_pricedif
+        unique_id: sensor.tibbermin_pricedif
+        state_class: measurement
+        state: >
+          {{ (states('sensor.electricity_price_merianstrasse_36', 'min_price') | float(0) - states('sensor.tibbermin_price') | float(0) )}}
