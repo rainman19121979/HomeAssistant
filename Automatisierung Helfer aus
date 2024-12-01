@@ -1,0 +1,19 @@
+alias: Günstigste Stunde Tibber aus
+description: ""
+triggers:
+  - minutes: "1"
+    trigger: time_pattern
+conditions:
+  - condition: state
+    entity_id: input_boolean.tibber_gunstigste_stunde
+    state: "on"
+  - condition: numeric_state
+    entity_id: sensor.sensor_tibbermin_pricedif
+    above: 0.01
+actions:
+  - target:
+      entity_id:
+        - input_boolean.tibber_gunstigste_stunde
+    data: {}
+    action: input_boolean.turn_off
+mode: single
